@@ -23,10 +23,11 @@ $@"{arr[0, 0]}|{arr[0,1]}|{arr[0, 2]}
         string[,] arr = new string[,] { {" "," "," " }, { " ", " ", " " }, { " ", " ", " " } };
         public int X { get; set; }
         public int Y { get; set; }
+        public bool ISx { get; set; }
+
 
         public void Move(ConsoleKey key)
         {
-            bool isX = false;
             switch (key)
             {
                 case ConsoleKey.RightArrow:
@@ -46,14 +47,20 @@ $@"{arr[0, 0]}|{arr[0,1]}|{arr[0, 2]}
                         Y+=2;
                     break;
                 case ConsoleKey.Spacebar:
-                    if (isX == false)
+                    if (ISx && arr[X,Y] == " ")
                     {
-                        arr[X,Y] = "X";
-                        isX = true;
-                    }
-                    else
                         arr[X, Y] = "O";
-                    break;        
+                        ISx = false;
+                        break;
+                    }
+                    else if(!ISx && arr[X, Y] == " ")
+                    {
+                        arr[X, Y] = "X";
+                        ISx = true;
+                        break;
+                    }
+                        break;
+                               
 
 
             }

@@ -49,23 +49,35 @@ $@"{arr[0, 0]}|{arr[0,1]}|{arr[0, 2]}
                 case ConsoleKey.Spacebar:
                     if (ISx && arr[X,Y] == " ")
                     {
+                        if(X== 4)
+                            X -= 2;
+                        else if(X == 6)
+                            X -= 2;
+                        else if(Y == 4)
+                            Y -= 2;
+                         else if (Y == 6)
+                            Y -= 2;
                         arr[X, Y] = "O";
                         ISx = false;
                         break;
                     }
                     else if(!ISx && arr[X, Y] == " ")
                     {
+                        if (X == 4)
+                            X -= 2;
+                        else if (X == 6)
+                            X -= 2;
+                        else if (Y == 4)
+                            Y -= 2;
+                        else if (Y == 6)
+                            Y -= 2;
                         arr[X, Y] = "X";
                         ISx = true;
                         break;
                     }
                         break;
-                               
-
 
             }
-
-
         }
         
         public void Engine()

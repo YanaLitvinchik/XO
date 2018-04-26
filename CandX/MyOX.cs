@@ -12,11 +12,11 @@ namespace CandX
         {
             Console.Clear();
             Console.Write(
-$@"{arr[0, 0]}|{arr[0,1]}|{arr[0, 2]}
+$@"{arr[0, 0]}|{arr[1,0]}|{arr[2, 0]}
 -+-+- 
-{arr[1, 0]}|{arr[1, 1]}|{arr[1,2]} 
+{arr[0, 1]}|{arr[1, 1]}|{arr[2,1]} 
 -+-+-
-{arr[2, 0]}|{arr[2, 1]}|{arr[2, 2]}
+{arr[0, 2]}|{arr[1, 2]}|{arr[2, 2]}
 ");
             Console.SetCursorPosition(X, Y);
         }
@@ -47,31 +47,17 @@ $@"{arr[0, 0]}|{arr[0,1]}|{arr[0, 2]}
                         Y+=2;
                     break;
                 case ConsoleKey.Spacebar:
-                    if (ISx && arr[X,Y] == " ")
-                    {
-                        if(X== 4)
-                            X -= 2;
-                        else if(X == 6)
-                            X -= 2;
-                        else if(Y == 4)
-                            Y -= 2;
-                         else if (Y == 6)
-                            Y -= 2;
-                        arr[X, Y] = "O";
+                    //0 2 4
+                    //0 1 2
+                    if (ISx && arr[X/2,Y/2] == " ")
+                    {                        
+                        arr[X/2, Y/2] = "O";
                         ISx = false;
                         break;
                     }
-                    else if(!ISx && arr[X, Y] == " ")
-                    {
-                        if (X == 4)
-                            X -= 2;
-                        else if (X == 6)
-                            X -= 2;
-                        else if (Y == 4)
-                            Y -= 2;
-                        else if (Y == 6)
-                            Y -= 2;
-                        arr[X, Y] = "X";
+                    else if(!ISx && arr[X/2, Y/2] == " ")
+                    {                       
+                        arr[X/2, Y/2] = "X";
                         ISx = true;
                         break;
                     }

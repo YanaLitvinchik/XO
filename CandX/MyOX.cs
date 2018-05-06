@@ -25,10 +25,39 @@ $@"{arr[0, 0]}|{arr[1, 0]}|{arr[2, 0]}
         public int Y { get; set; }
         public bool ISx { get; set; }
         public bool IsWin { get; set; }// false
+        public int WinX { get; set; }
+        public int WinO { get; set; }
+        public int NoWinner { get; set; }
         public bool Info()
         {
-            if (arr[0, 1] == "X" && arr[0, 1] == "X" && arr[0, 2] == "X")
-                IsWin = true;
+            if (arr[0, 0] == "X" && arr[0, 1] == "X" && arr[0, 2] == "X"
+                || arr[1, 0] == "X" && arr[1, 1] == "X" && arr[1, 2] == "X"
+                || arr[2, 0] == "X" && arr[2, 1] == "X" && arr[2, 2] == "X"
+                || arr[0, 0] == "X" && arr[1, 0] == "X" && arr[2, 0] == "X"
+                || arr[0, 1] == "X" && arr[1, 1] == "X" && arr[2, 1] == "X"
+                || arr[0, 2] == "X" && arr[1, 2] == "X" && arr[2, 2] == "X"
+                || arr[0, 0] == "X" && arr[1, 1] == "X" && arr[2, 2] == "X"
+                || arr[2, 2] == "X" && arr[1, 1] == "X" && arr[0, 0] == "X"
+                )
+            {
+                WinX++;
+                return IsWin = true;
+            }
+            else if (arr[0, 0] == "O" && arr[1, 0] == "O" && arr[2, 0] == "O"
+                || arr[0, 1] == "O" && arr[1, 1] == "O" && arr[2, 1] == "O"
+                || arr[0, 2] == "O" && arr[1, 2] == "O" && arr[2, 2] == "O"
+                || arr[0, 0] == "O" && arr[1, 1] == "O" && arr[2, 2] == "O"
+                || arr[2, 2] == "O" && arr[1, 1] == "O" && arr[0, 0] == "O"
+                || arr[0, 0] == "O" && arr[0, 1] == "O" && arr[0, 2] == "O"
+                || arr[1, 0] == "O" && arr[1, 1] == "O" && arr[1, 2] == "O"
+                || arr[2, 0] == "O" && arr[2, 1] == "O" && arr[2, 2] == "O"
+                )
+            {
+                WinO++;
+                return IsWin = true;
+            }
+            else
+                NoWinner++;
             return IsWin;
         }
         public void Move(ConsoleKey key)
@@ -75,15 +104,17 @@ $@"{arr[0, 0]}|{arr[1, 0]}|{arr[2, 0]}
             Menu();
             do
             {
-                key = Console.ReadKey().Key; //zz
+                key = Console.ReadKey().Key;
                 Move(key);
+                Menu();
                 if (Info() == true)
                 {
-                    Console.WriteLine("you won");
+                    Console.WriteLine();
+                    Console.WriteLine("\n\n\n\nyou won");
                     break;
                 }
-                Menu();
             } while (key != ConsoleKey.Enter);
+
         }
 
     }
